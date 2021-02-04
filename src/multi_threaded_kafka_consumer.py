@@ -71,7 +71,7 @@ class ModelInference(object):
                 inference_ts = time.time()
                 out = {}
                 out['ingest_ts'] = ingest_ts
-                out['my_id'] = message_id
+                out['message_id'] = message_id
                 out['truth'] = truth ## model.learn_one(Y,Y_HAT)
                 out['y_hat'] = y_hat
                 out['inference_ts'] = inference_ts
