@@ -61,9 +61,9 @@ class ModelInference(object):
         now = datetime.now()
         i = 0
         while True:
-            print(1)
+
             for message in self.consumer:
-                print(message)
+
                 message = message.value
 
                 ingest_ts = message['ingestTs']
@@ -95,5 +95,41 @@ if __name__ == '__main__':
     bootstrap_servers = []
     request_topic = 'transactionv0'
     inference_topic = 'inferencev102'
+
+    #1 Core - Process all 8 partitions
+
+    #1 Core 1 Job-1.1
+    #transaction2, inference2
     example0 = ModelInference(my_id=0, bootstrap_servers=bootstrap_servers, list_of_partitions=[0,1,2,3,4,5,6,7,8],request_topic=request_topic,inference_topic=inference_topic,group_id='my_grp-1')
     example0.run()
+
+    #1 Core 1 Job 2.1
+    #transaction3, inference3
+    example0 = ModelInference(my_id=0, bootstrap_servers=bootstrap_servers, list_of_partitions=[0,1,2,3],request_topic=request_topic,inference_topic=inference_topic,group_id='my_grp-1')
+    example0.run()
+    #1 Core 1 Job 2.2
+    #transaction3, inference3
+    example0 = ModelInference(my_id=0, bootstrap_servers=bootstrap_servers, list_of_partitions=[4,5,6,7],request_topic=request_topic,inference_topic=inference_topic,group_id='my_grp-1')
+    example0.run()
+
+    #1 Core 1 Job 3.1
+    #transaction4, inference4
+    example0 = ModelInference(my_id=0, bootstrap_servers=bootstrap_servers, list_of_partitions=[0,1],request_topic=request_topic,inference_topic=inference_topic,group_id='my_grp-1')
+    example0.run()
+    #1 Core 1 Job 3.2
+    #transaction4, inference4
+    example0 = ModelInference(my_id=0, bootstrap_servers=bootstrap_servers, list_of_partitions=[2,3],request_topic=request_topic,inference_topic=inference_topic,group_id='my_grp-1')
+    example0.run()
+    #1 Core 1 Job 3.3
+    #transaction4, inference4
+    example0 = ModelInference(my_id=0, bootstrap_servers=bootstrap_servers, list_of_partitions=[4,5],request_topic=request_topic,inference_topic=inference_topic,group_id='my_grp-1')
+    example0.run()
+    #1 Core 1 Job 3.4
+    #transaction4, inference4
+    example0 = ModelInference(my_id=0, bootstrap_servers=bootstrap_servers, list_of_partitions=[6,7],request_topic=request_topic,inference_topic=inference_topic,group_id='my_grp-1')
+    example0.run()
+
+
+    #2 Core
+
+
