@@ -82,8 +82,9 @@ class ModelInference(object):
                 #sprint(self.result_t)
                 self.producer.send(self.result_t, value=out,key=str(message_id))
                 #self.producer.flush()
-                print('sending to ' + self.result_t + ' ' + str(self.result_t_p) + ' ' + str(out))
 
+                if(i%1000==0):
+                    print('sending to ' + self.result_t + ' ' + str(self.result_t_p) + ' ' + str(out))
         self.producer.flush()
         self.producer.close()
 
