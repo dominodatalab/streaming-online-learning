@@ -36,6 +36,7 @@ class ModelInference(object):
         #self.tls=list_of_partitions
         print(self.tls)
         self.producer = KafkaProducer(bootstrap_servers=self.bootstrap_servers,batch_size=100,
+                                      key_serializer=str.encode,
                                       value_serializer=lambda x:
                                       json.dumps(x).encode('utf-8'))
         self.consumer = KafkaConsumer(
@@ -64,13 +65,13 @@ class ModelInference(object):
                 message = message.value
 
                 ingest_ts = message['ingestTs']
-                my_id = message['time']
+                message_id = message['message_id']
                 truth = message['Class']
                 y_hat = truth ## Replace with model.predict & model.learn_one(
                 inference_ts = time.time()
                 out = {}
                 out['ingest_ts'] = ingest_ts
-                out['my_id'] = my_id
+                out['my_id'] = message_id
                 out['truth'] = truth ## model.learn_one(Y,Y_HAT)
                 out['y_hat'] = y_hat
                 out['inference_ts'] = inference_ts
@@ -79,7 +80,7 @@ class ModelInference(object):
                 i = i + 1
                 partition = i % self.result_t_p
                 #print('sending to ' + self.result_t + ' ' + str(self.result_t_p) + ' ' + str(out))
-                self.producer.send(self.result_t, value=out,partition=partition)
+                self.producer.send(self.result_t, value=out,key=str(i))
                 #self.producer.flush()
                 if (i % 1000 == 0):
                     self.producer.flush()
