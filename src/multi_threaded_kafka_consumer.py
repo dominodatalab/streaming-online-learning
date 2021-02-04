@@ -3,12 +3,12 @@
 # Press ⌃R to execute it or replace it with your code.
 # Press Double ⇧ to search everywhere for classes, files, tool windows, actions, and settings.
 import json
-from time import sleep
+
 from json import dumps, loads
 from kafka.structs import (
     TopicPartition
 )
-import collection as collection
+
 from kafka import KafkaProducer, KafkaConsumer
 from datetime import datetime
 import time
@@ -75,6 +75,7 @@ class ModelInference(object):
                 out['truth'] = truth ## model.learn_one(Y,Y_HAT)
                 out['y_hat'] = y_hat
                 out['inference_ts'] = inference_ts
+                out['dur_evt_inf'] = inference_ts - ingest_ts;
 
 
                 i = i + 1
@@ -96,8 +97,8 @@ if __name__ == '__main__':
     #example = MyConsumer(my_id=0, list_of_partitions=[0,1,2,3,4, 5, 6, 7])
     #Provide kafka parameters
     bootstrap_servers = []
-    request_topic = 'credit_card_v2'
-    inference_topic = ' model_results_v2'
+    request_topic = 'transactionv1'
+    inference_topic = ' inferencev1'
     example0 = ModelInference(my_id=0, bootstrap_servers=bootstrap_servers, list_of_partitions=[0],request_topic=request_topic,inference_topic=inference_topic,group_id='my_grp-1')
     example1 = ModelInference(my_id=1, bootstrap_servers=bootstrap_servers, list_of_partitions=[1],request_topic=request_topic,inference_topic=inference_topic,group_id='my_grp-1')
     example2 = ModelInference(my_id=2, bootstrap_servers=bootstrap_servers, list_of_partitions=[2],request_topic=request_topic,inference_topic=inference_topic,group_id='my_grp-1')
@@ -112,7 +113,25 @@ if __name__ == '__main__':
     #example1 = ModelInference(my_id=1, bootstrap_servers=bootstrap_servers, list_of_partitions=[2,3],request_topic=request_topic,inference_topic=inference_topic,group_id='my_grp-1')
     #example2 = ModelInference(my_id=2, bootstrap_servers=bootstrap_servers, list_of_partitions=[4,5],request_topic=request_topic,inference_topic=inference_topic,group_id='my_grp-1')
     #example3 = ModelInference(my_id=3, bootstrap_servers=bootstrap_servers, list_of_partitions=[6,7],request_topic=request_topic,inference_topic=inference_topic,group_id='my_grp-1')
-    time.sleep(3)
+
+    #[transationv2, inferencev2] 1-core
+    example0 = ModelInference(my_id=0, bootstrap_servers=bootstrap_servers, list_of_partitions=[0,1,2,3,4,5,6,7],request_topic=request_topic,inference_topic=inference_topic,group_id='my_grp-1')
+
+    #---
+    #[transationv3, inferencev3] 2-core
+    example0 = ModelInference(my_id=0, bootstrap_servers=bootstrap_servers, list_of_partitions=[0,1,2,3],request_topic=request_topic,inference_topic=inference_topic,group_id='my_grp-1')
+    example1 = ModelInference(my_id=0, bootstrap_servers=bootstrap_servers, list_of_partitions=[4, 5, 6, 7],
+                              request_topic=request_topic, inference_topic=inference_topic, group_id='my_grp-1')
+    # ---
+    # [transationv4, inferencev4] 4-core
+    example0 = ModelInference(my_id=0, bootstrap_servers=bootstrap_servers, list_of_partitions=[0, 1],
+                              request_topic=request_topic, inference_topic=inference_topic, group_id='my_grp-1')
+    example1 = ModelInference(my_id=0, bootstrap_servers=bootstrap_servers, list_of_partitions=[2,3],
+                              request_topic=request_topic, inference_topic=inference_topic, group_id='my_grp-1')
+    example2 = ModelInference(my_id=0, bootstrap_servers=bootstrap_servers, list_of_partitions=[4, 5],
+                              request_topic=request_topic, inference_topic=inference_topic, group_id='my_grp-1')
+    example3 = ModelInference(my_id=0, bootstrap_servers=bootstrap_servers, list_of_partitions=[6, 7],
+                              request_topic=request_topic, inference_topic=inference_topic, group_id='my_grp-1')
     print('Checkpoint')
     time.sleep(100000)
     print('Bye')
