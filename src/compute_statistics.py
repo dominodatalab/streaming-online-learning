@@ -57,13 +57,16 @@ if __name__ == '__main__':
     max = max(durs)
     min = min(durs)
 
-    print('max' + str(max))
-    print('min' + str(min))
-    print('avg' + str(mean))
-    print('avg' + str(mean-min))
-    #print('med' + str(median))
+    print('max=' + str(max))
+    print('min=' + str(min))
+    print('avg=' + str(mean))
+    print('avg_adj=' + str(mean-min))
+    print('med=' + str(median))
+    print('adj_max=' + (max-min))
+    print('adj_min=' + 1)
 
     print('size' + str(len(durs)))
     consumer.close()
+
 
 
