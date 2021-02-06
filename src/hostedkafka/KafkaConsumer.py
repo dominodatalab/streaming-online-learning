@@ -48,10 +48,9 @@ class ModelInference(object):
 
         self.producer = Producer(conf)
         conf = {'bootstrap.servers': bootstrap_servers,
-                'sasl.mechanism': 'PLAIN',
-                'security.protocol': 'SASL_SSL',
-                'sasl.username': 'FFJ5LISIRJWAOBRV',
-                'sasl.password': 'bwxVN7T4d/TeY26aSNCCelWMQN2QTtfrz+/8FC+mbvCiCriA5shQdy8rhpdTrGhu',
+                #'sasl.mechanism': 'PLAIN',
+                'sasl.username': '<USER_NAME>',
+                'sasl.password': '<ADD_PASSWORD>',
                 'ssl.ca.location': '/tmp/cacert.pem',
                 'group.id': group_id,
                 'auto.offset.reset': 'smallest'}
