@@ -50,7 +50,7 @@ def basic_consume_loop(consumer, topics):
             i = i + 1
             if (i % 10000 == 0):
                 print(message)
-                now2 = datetime.now()
+                #now2 = datetime.now()
                 print(i)
 
     finally:
