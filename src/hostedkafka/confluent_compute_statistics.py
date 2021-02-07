@@ -7,8 +7,8 @@ from confluent_kafka.cimpl import KafkaError, KafkaException
 from confluent_kafka import TopicPartition
 import datetime
 import statistics
-user = 'SHHNBVCDDYYMBJ6Z'
-pwd = 'gcYXYis4Z0wN8s3jcLONr3xnisiwmIGIvRKUx7D+5FCw5E17of2+4+pitxFoneMq'
+user = '<USER_NAME>'
+pwd = '<PWD>'
 bsts = 'pkc-4kgmg.us-west-2.aws.confluent.cloud:9092'
 t = <TOPIC_NAME>
 conf = {'bootstrap.servers': bsts,
