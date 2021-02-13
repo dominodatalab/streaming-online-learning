@@ -115,9 +115,9 @@ class ModelInference(object):
         conf = {'bootstrap.servers': bootstrap_servers,
                 'sasl.mechanism': 'PLAIN',
                 'security.protocol': 'SASL_SSL',
-                'ssl.ca.location': '/tmp/cacert.pem',
-                'sasl.username': 'FFJ5LISIRJWAOBRV',
-                'sasl.password': 'bwxVN7T4d/TeY26aSNCCelWMQN2QTtfrz+/8FC+mbvCiCriA5shQdy8rhpdTrGhu',
+                'ssl.ca.location': '/tmp/cacert.pem', 
+                'sasl.username': '<ADD_USERNAME>',
+                'sasl.password': '<ADD_PASSWORD',
                 # 'key.serializer': StringSerializer('utf_8'),
                 # 'value.serializer': StringSerializer('utf_8'),
 
@@ -127,8 +127,8 @@ class ModelInference(object):
         conf = {'bootstrap.servers': bootstrap_servers,
                 'sasl.mechanism': 'PLAIN',
                 'security.protocol': 'SASL_SSL',
-                'sasl.username': 'FFJ5LISIRJWAOBRV',
-                'sasl.password': 'bwxVN7T4d/TeY26aSNCCelWMQN2QTtfrz+/8FC+mbvCiCriA5shQdy8rhpdTrGhu',
+                'sasl.username': '<ADD_USERNAME>',
+                'sasl.password': 'ADD_PASSWORD',
                 'ssl.ca.location': '/tmp/cacert.pem',
                 'group.id': 'g-1',
                 'auto.offset.reset': 'smallest'}
@@ -169,9 +169,9 @@ class ModelInference(object):
 
 if __name__ == '__main__':
 
-    bootstrap_servers = 'pkc-4kgmg.us-west-2.aws.confluent.cloud:9092'
-    request_topic = 'tv1'
-    inference_topic = 'iv1'
+    bootstrap_servers = '<ADD_SERVER>'
+    request_topic = '<ADD_TRANSACTIONS_TOPIC>'
+    inference_topic = '<ADD_INFERENCE_TOPIC>'
 
     #1 Core - Process all 8 partitions
 

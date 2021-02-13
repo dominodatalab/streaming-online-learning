@@ -19,7 +19,7 @@ from confluent_kafka.serialization import StringSerializer
 if __name__ == '__main__':
     user='<USER>'
     pwd='<PASS>'
-    bsts='pkc-4kgmg.us-west-2.aws.confluent.cloud:9092'
+    bsts='<SERVER:PORT>'
     topic = 'T1'
     conf = {'bootstrap.servers': bsts,
             'sasl.mechanism': 'PLAIN',
