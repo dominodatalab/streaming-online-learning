@@ -5,7 +5,6 @@
 from time import sleep
 from json import dumps, loads
 
-import collection as collection
 from confluent_kafka import Producer, SerializingProducer
 import csv
 import time
