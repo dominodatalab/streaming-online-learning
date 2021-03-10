@@ -1,3 +1,5 @@
+# Streaming Data and Online Learning With River-ML
+
 This repository can be used to set up and deploy instances of online machine learning models, to generate predictions and update the model weights on streaming data.  
 
 High-level steps to set up, deploy, run, and evaluate online learning experiments: 
