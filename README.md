@@ -7,5 +7,7 @@ High-level steps to set up, deploy, run, and evaluate online learning experiment
 1. Deploy infrastructure to host experiments (for our purposes this was done on the AWS cloud).  
 2. Set up Kafka to generate data streams (this can be done with a managed Kafka service such as Confluent Kafka, although any Kafka solution should work). You will need both topics of data to read from (we expect 8 partitions of the data stream) as well as topics where you can write results. 
 3. [Optional] Set up or gain access to Domino environment (alternatives can be set up using other solutions).  
-4. Connect your compute/model instances to your Kafka cluster. 
-5. ...
+4. Connect your compute/model instances to your Kafka cluster.  An example configuration is shown in https://github.com/dominodatalab/streaming-online-learning/blob/main/src/hostedkafka/KafkaConsumer.py. Model instances will pull from a stream on designated topics and write back results on separate topics.
+5. Set up the Kafka producer stream on the Kafka end.  This is the stream from which the model instances will pull data for inference and learning.  A producer configuration is demonstrated in https://github.com/dominodatalab/streaming-online-learning/blob/main/src/hostedkafka/confluent_producer.py. 
+6. Utilize an appropriate Docker image or virtual environment (or a compute environment if using Domino) with the necessary dependencies, including River-ML and Kafka dependencies.  Install River version 0.1.0 from github as well as confluent-kafka version 1.6.0 via pip.  All required dependencies are included in the provided Docker file: https://quay.io/repository/katieshakman/streaming-online-learning-20200208.
+7. 
