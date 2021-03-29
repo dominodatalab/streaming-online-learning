@@ -1,3 +1,4 @@
+# This Dockerfile has been built as a Docker image that is available at: https://quay.io/repository/katieshakman/streaming-online-learning-20200208
 FROM dominodatalab/base:Ubuntu18_DAD_Py3.7_R3.6_20200508
 
 LABEL maintainer="Field Data Science Team at Domino Data Lab <support@dominodatalab.com>"
