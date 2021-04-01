@@ -4,7 +4,7 @@ This repository is the official implementation of the paper Online Learning Depl
 The ressources can be used to set up and deploy instances of online machine learning models, to generate predictions and update the model weights on streaming data.  
 
 ## Deployment Architecture
-
+<img width="518" alt="pipeline_experiments_kafka_domino" src="https://user-images.githubusercontent.com/27995832/113325526-df501e00-9318-11eb-92af-08633228a7d7.PNG">
 ## Files descriptions
 
 ## Pipeline set up & Model Deployment
