@@ -66,6 +66,12 @@ We demonstrate that the proposed system can successfully ingest and process high
 
 ### References
 <a id="1">[1]</a> 
-Dijkstra, E. W. (1968). 
-Go to statement considered harmful. 
-Communications of the ACM, 11(3), 147-148.
+Jacob Montiel, Max Halford, Saulo Martiello Mastelini, Geoffrey Bolmier, Raphael
+Sourty, Robin Vaysse, Adil Zouitine, Heitor Murilo Gomes, Jesse Read, Talel
+Abdessalem, and Albert Bifet. 2020. River: machine learning for streaming data
+in Python. arXiv:2012.04740 [cs.LG]
+
+<a id="1">[2]</a> 
+Swee Chuan Tan, Kai Ming Ting, and Tony Fei Liu. 2011. Fast Anomaly Detection for Streaming Data. In Proceedings of the Twenty-Second International Joint
+Conference on Artificial Intelligence - Volume Volume Two (Barcelona, Catalonia,
+Spain) (IJCAI’11). AAAI Press, 1511–1516.
