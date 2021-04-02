@@ -8,7 +8,7 @@ This repository is the official implementation of the paper Online Learning Depl
 
 > [River](https://github.com/online-ml/river) is an open-source online machine learning library written in Python which main focus is **instance-incremental
 learning**, meaning that every component (estimators, transformers, performance metrics, etc.) is designed to be updated one sample at a time. We used River to continuously train and update online learning model from last data streams. 
->>> [KAFKA](https://kafka.apache.org/) is 
+> [KAFKA](https://kafka.apache.org/) is 
 a state of the art open-source distributed
 event streaming platform and we used a managed hosted Kafka ([confluent](https://www.confluent.io/). We used it as a data streams generator.
 
@@ -40,17 +40,24 @@ Here are the high-level steps to set up, deploy, run, and evaluate online learni
 
 ## Experiments and Results
 
- We set up online models (supervised HoeffdingTree Classifier Trees and unsupervised anomaly dtetector HalfSpaces Trees) to incrementally learn and update from streams events. The pipeline was hosted on AWS
+ We set up **onlinelearning  models** (supervised HoeffdingTree Classifier Trees [[1]](#2) and unsupervised anomaly dtetector HalfSpaces Trees [[2]](#2)) to incrementally learn and update from streams events. The **datasets** used are publiclyavailable on River : [Credit cards transactions in September 2013 by european
+    cardholders](https://github.com/online-ml/river/blob/master/river/datasets/credit_card.py) and [Electricity prices in New South Wales](https://github.com/online-ml/river/blob/master/river/datasets/elec2.py) The pipeline was hosted on AWS
 Cloud using the Domino Data Science platform connected to a managed Kafka to process streams data.
 The workflow of experiments set up is below and detail are provided in the paper.
 
 <img width="518" alt="pipeline_experiments_kafka_domino" src="https://user-images.githubusercontent.com/27995832/113413618-5c33d400-93bb-11eb-88e9-725aaed545f6.PNG">
 
 A series of experiments was conducted with the main objective
-being the functional verification of the outlined streaming architecture and scalability
+being the functional verification of the proposed streaming architecture in the paper and scalability
 exercise. The results table can be found below :
 
 <img width="744" alt="results_experiments" src="https://user-images.githubusercontent.com/27995832/113413601-53430280-93bb-11eb-88fe-06556b192709.PNG">
 
 
 We demonstrate that the proposed system can successfully ingest and process high-velocity streaming data and that online learning models can be horizontally scaled. 
+
+### References
+<a id="1">[1]</a> 
+Dijkstra, E. W. (1968). 
+Go to statement considered harmful. 
+Communications of the ACM, 11(3), 147-148.
