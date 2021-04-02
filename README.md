@@ -21,13 +21,13 @@ it spins up containers on demand for running user workloads. The containers are 
 
 The files in the reposirory are intended to achieve some data processing steps in the streams learning pipeline.
 
-* Set up streams generators Kafka producer and Consumers
-* Run Parallel Domino instances to bechnmark scalability and compute results metrics
+* Set up streams generators using Kafka producer and consumers to process data as streams, create requires features for model input and output. Files #confluent_producer.py 
+* Run model training and serving on multiples instances of Domino instances to bechnmark scalability and compute results metrics
 * Model run to continuous train and update model weights
 
-## Model Deployment : Steps to setp Online Learning Pipeline
+## Model Deployment : step to step Online Learning Pipeline
 
-Here are the high-level steps to set up, deploy, run, and evaluate online learning experiments: 
+Here we list the high-level steps to set up, deploy, run, and evaluate online learning experiments: 
 
 1. Deploy infrastructure to host experiments (for our purposes this was done on the AWS cloud).  
 2. Set up Kafka to generate data streams (this can be done with a managed Kafka service such as Confluent Kafka, although any Kafka solution should work). You will need both topics of data to read from (we expect 8 partitions of the data stream) as well as topics where you can write results. 
