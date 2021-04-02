@@ -69,7 +69,7 @@ exercise. The results table can be found below :
 We demonstrate that the proposed system can successfully ingest and process high-velocity streaming data and that online learning models can be horizontally scaled. More details are available in the paper.
 
 ## Acknowledgements
-We Thank [Nikolay MANCHEV](https://github.com/nmanchev) for his contributions and key role to achieve this repository.
+We Thank [Nikolay MANCHEV](https://github.com/nmanchev) for his contributions and key role to achieve this repository as open source.
 
 ### References
 <a id="1">[1]</a> 
