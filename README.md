@@ -3,19 +3,19 @@
 This repository is the official implementation of the paper Online Learning Deployment for Streaming Applications in the Banking Sector.
 The ressources can be used to set up and deploy instances of online machine learning models, to generate predictions and update the model weights on streaming data.  
 
-## Deployment Architecture
-<img width="518" alt="pipeline_experiments_kafka_domino" src="https://user-images.githubusercontent.com/27995832/113325526-df501e00-9318-11eb-92af-08633228a7d7.PNG">
-## Files descriptions
+## Overall Architecture
 
-## Pipeline set up & Model Deployment
 
-High-level steps to set up, deploy, run, and evaluate online learning experiments: 
+
+## Files Descriptions
+
+## Streams Learning Pipeline set up & Model Deployment
+
+Here are the high-level steps to set up, deploy, run, and evaluate online learning experiments: 
 
 1. Deploy infrastructure to host experiments (for our purposes this was done on the AWS cloud).  
 2. Set up Kafka to generate data streams (this can be done with a managed Kafka service such as Confluent Kafka, although any Kafka solution should work). You will need both topics of data to read from (we expect 8 partitions of the data stream) as well as topics where you can write results. 
  
-https://github.com/MariamBARRY/streaming-online-learning/blob/main/src/hostedkafka/confluent_producer.py
-
 4. [Optional] Set up or gain access to Domino environment (alternatives can be set up using other solutions).  
 5. Connect your compute/model instances to your Kafka cluster.  An example configuration is shown in https://github.com/dominodatalab/streaming-online-learning/blob/main/src/hostedkafka/KafkaConsumer.py. Model instances will pull from a stream on designated topics and write back results on separate topics.
 6. Set up the Kafka producer stream on the Kafka end.  This is the stream from which the model instances will pull data for inference and learning.  A producer configuration is demonstrated in https://github.com/dominodatalab/streaming-online-learning/blob/main/src/hostedkafka/confluent_producer.py. 
@@ -25,3 +25,6 @@ https://github.com/MariamBARRY/streaming-online-learning/blob/main/src/hostedkaf
 
 
 ## Experiements Results
+
+<img width="518" alt="pipeline_experiments_kafka_domino" src="https://user-images.githubusercontent.com/27995832/113325526-df501e00-9318-11eb-92af-08633228a7d7.PNG">
+
