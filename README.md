@@ -1,10 +1,13 @@
 # Online Learning Deployment for Streaming Applications
 
-This repository is the official implementation of the paper Online Learning Deployment for Streaming Applications in the Banking Sector.
+This repository is the official implementation of the paper Online Learning Deployment for Streaming Applications in the Banking Sector (Barry, Montiel, Bifet, Chiky, Shakman, Manchev, Wadkar, El Baroudi, Tran, KDD 2021).
 The ressources can be used to set up and deploy instances of online machine learning models, to generate predictions and update the model weights on streaming data.  
 
-## Overall Architecture
+** Problem Statement
+>> Use cases
 
+** Technologies used : RIVER Machine Learning & Domino Platform
+<img width="484" alt="technologies_used_river_domino" src="https://user-images.githubusercontent.com/27995832/113413633-6655d280-93bb-11eb-9f0d-d9674024d465.PNG">
 
 
 ## Files Descriptions
@@ -24,7 +27,21 @@ Here are the high-level steps to set up, deploy, run, and evaluate online learni
 9. Collect performance metrics for the deployed models. Predictive performance can be incrementally measured using the ROCAUC metric available in River. Metrics can be sent along with inferences (predictions) to the "inferences" Kafka topic created above. They can also be written to a file which is persisted to a blob store or other convenient storage. When analyzing the results on Domino, confluent_compute_statistics.py (included in the repository) can be run to persist the results to a file and generate summary statistics.
 
 
-## Experiements Results
+## Experiments and Results
 
-<img width="518" alt="pipeline_experiments_kafka_domino" src="https://user-images.githubusercontent.com/27995832/113325526-df501e00-9318-11eb-92af-08633228a7d7.PNG">
+ We set up online models (supervised Hoeefding Trees and unsupervised Half Spaces Trees) to incrementally learn and update from streams events hosted on AWS
+Cloud using the Domino Data Science platform connected to a managed Kafka to process streams data.
+The workflow of experiments set up is below and detail are provided in the paper.
 
+<img width="518" alt="pipeline_experiments_kafka_domino" src="https://user-images.githubusercontent.com/27995832/113413618-5c33d400-93bb-11eb-88e9-725aaed545f6.PNG">
+
+A series of experiments was conducted with the main objective
+being the functional verification of the outlined streaming architecture and scalability
+exercise. The results table can be found below :
+
+<img width="744" alt="results_experiments" src="https://user-images.githubusercontent.com/27995832/113413601-53430280-93bb-11eb-88fe-06556b192709.PNG">
+
+
+We demonstrate that the proposed system
+can successfully ingest and process high-velocity streaming data
+and that online learning models can be horizontally scaled. 
