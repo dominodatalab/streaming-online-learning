@@ -63,7 +63,10 @@ exercise. The results table can be found below :
 <img width="744" alt="results_experiments" src="https://user-images.githubusercontent.com/27995832/113413601-53430280-93bb-11eb-88fe-06556b192709.PNG">
 
 
-We demonstrate that the proposed system can successfully ingest and process high-velocity streaming data and that online learning models can be horizontally scaled. 
+We demonstrate that the proposed system can successfully ingest and process high-velocity streaming data and that online learning models can be horizontally scaled. More details are available in the paper.
+
+## Acknowledgements
+We Thank [Nikolay MANCHEV](https://github.com/nmanchev) from Domino for his contributions and key role to achieve this repository.
 
 ### References
 <a id="1">[1]</a> 
