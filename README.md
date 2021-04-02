@@ -2,9 +2,9 @@
 
 This repository is the official implementation of the paper Online Learning Deployment for Streaming Applications in the Banking Sector (Barry, Montiel, Bifet, Chiky, Shakman, Manchev, Wadkar, El Baroudi, Tran, KDD 2021). The ressources can be used to set up and deploy instances of online machine learning models, to generate predictions and update the model weights on streaming data.  
 
-> **Problem Statement** Our goal is to propose a solution that can accelare the industrialization and operationalization of online Machine Learning modelS under streaming constraints. The potential use cases can be 
+> **Problem Statement** Our goal is to propose a solution that can accelare the industrialization and operationalization of online machine learning models for production and application that requires handling streaming constraints. For example the potential use cases can be anomaly and fraud detection for time-evolving data streams or real-time classification of user activities or IT or logs events.
 
-## Technologies and Packages used : RIVER Machine Learning & Domino Platform**
+## Technologies and Packages used : RIVER Machine Learning & Domino Platform
 
 > [River](https://github.com/online-ml/river) is an open-source online machine learning library written in Python which main focus is **instance-incremental
 learning**, meaning that every component (estimators, transformers, performance metrics, etc.) is designed to be updated one sample at a time. We used River to continuously train and update online learning model from last data streams. 
