@@ -17,13 +17,20 @@ it spins up containers on demand for running user workloads. The containers are 
 
 <img width="484" alt="technologies_used_river_domino" src="https://user-images.githubusercontent.com/27995832/113413633-6655d280-93bb-11eb-9f0d-d9674024d465.PNG">
 
-## Files Descriptions
+## Repository Files Description
 
 The files in the reposirory are intended to achieve some data processing steps in the streams learning pipeline.
 
-* Set up streams generators using Kafka producer and consumers to process data as streams, create requires features for model input and output. Files #confluent_producer.py 
-* Run model training and serving on multiples instances of Domino instances to bechnmark scalability and compute results metrics
-* Model run to continuous train and update model weights
+* Set up streams generators using Kafka producer and consumers to process data as streams, create requires features for model input and output. Files $confluent_producer.py$ and $KafkaConsumer.py$ 
+* Set up model training and serving on multiples instances of Domino instances to bechnmark scalability. The models are deployed on parallel
+processing operators (independent instances of Domino Platform), which listens to a mutually exclusive set of Apache Kafka topic partitions (8 partitions). For each sample, the data features (X) and the corresponding truth value (Y) are published to the Kafka topic.
+
+* Compute and store results metrics to assess operational performance : latency, throughput, model size on disk and
+ROCAUC. This is detailled in the $confluent_compute_statistics.py$ and ModelInference Class.
+
+* Model run to continuous train and update model weights : all models were build
+and continuously trained using [River](https://github.com/online-ml/river) processing incrementally each Kafka event. The files $_HoeffdingTreeClassifier_.py$ and $_HalfSpaceTrees_$.py compute the entire steps to deliver desired output and metrics mentionned in the results table below.
+
 
 ## Model Deployment : step to step Online Learning Pipeline
 
