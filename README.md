@@ -4,7 +4,7 @@ This repository is the official implementation of the paper Online Learning Depl
 
 > **Problem Statement** Our goal is to propose a solution that can accelare the industrialization and operationalization of online machine learning models for production and application that requires handling streaming constraints. For example the potential use cases can be anomaly and fraud detection for time-evolving data streams or real-time classification of user activities or IT or logs events.
 
-## Technologies and Packages used : RIVER Machine Learning & Domino Platform
+## Tools used : RIVER, Kafka & Domino Platform on AWS
 
 > [River](https://github.com/online-ml/river) is an open-source online machine learning library written in Python which main focus is **instance-incremental
 learning**, meaning that every component (estimators, transformers, performance metrics, etc.) is designed to be updated one sample at a time. We used River to continuously train and update online learning model from last data streams. 
