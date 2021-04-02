@@ -30,7 +30,7 @@ processing operators (independent instances of Domino Platform), which listens t
 ROCAUC. This is detailled in the `confluent_compute_statistics.py`.
 
 *Model run to continuous train and update model weights : all models were build
-and continuously trained using [River](https://github.com/online-ml/river) processing incrementally each Kafka event. The files  `_HoeffdingTreeClassifier_.py`  and `_HalfSpaceTrees_.py`.computes the entire steps mentionned above in the `ModelInference Class` to deliver desired output and metrics mentionned in the results table below.
+and continuously trained using [River](https://github.com/online-ml/river) processing incrementally each Kafka event. The files  `_HoeffdingTreeClassifier_.py`  and `_HalfSpaceTrees_.py` computes the entire steps mentionned above in the `ModelInference Class` to deliver desired output and metrics mentionned in the results table below for both models.
 
 
 ## Model Deployment : step to step Online Learning Pipeline
