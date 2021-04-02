@@ -21,17 +21,20 @@ it spins up containers on demand for running user workloads. The containers are 
 
 The files in the reposirory are intended to run some data processing steps in the streams learning pipeline we set up to run experiments in the paper.
 
-* Set up streams generators using Kafka producer and consumers to process data as streams, create requires features for model input and output. Files `confluent_producer.py`
+* Set up **streams generators using Kafka* producer and consumers to process data as streams, create requires features for model input and output. Files `confluent_producer.py`
  and `KafkaConsumer.py`
-* Set up model training and serving on multiples instances of Domino instances to bechnmark scalability. The models are deployed on parallel
+* Set up model training and **serving on multiples instances** of Domino instances (or Docker) to bechnmark scalability. The models are deployed on parallel
 processing operators (independent instances of Domino Platform), which listens to a mutually exclusive set of Apache Kafka topic partitions (8 partitions). For each sample, the data features (X) and the corresponding truth value (Y) are published to the Kafka topic.
 
-* Compute and store results metrics incrementaly to assess operational performance of the pipeline : latency, throughput, model size on disk and
+* Compute and **store model operationalization metrics incrementaly** to assess operational performance of the solution : latency, throughput, model size on disk and
 ROCAUC. This is detailled in the `confluent_compute_statistics.py`.
 
-*Model run to continuous train and update model weights : all models were build
+* Online Learning to continuously train and update model weights : all models were build
 and continuously trained using [River](https://github.com/online-ml/river) processing incrementally each Kafka event. The files  `_HoeffdingTreeClassifier_.py`  and `_HalfSpaceTrees_.py` computes the entire steps mentionned above in the `ModelInference Class` to deliver desired output and metrics mentionned in the results table below for both models.
 
+The future work should adress upgrading the solution to include model
+persistence and investigate the trade-off between model serving parallelization to reduce latency and improve throughput vs using distributed
+methods.
 
 ## Model Deployment : step to step Online Learning Pipeline
 
