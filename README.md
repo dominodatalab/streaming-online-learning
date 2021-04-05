@@ -6,7 +6,7 @@ This repository is the official implementation of the paper Online Learning Depl
 
 ## Tools used : RIVER, Kafka & Domino Platform on AWS
 
-> [River](https://github.com/online-ml/river) is an open-source online machine learning library written in Python which main focus is **instance-incremental
+> [River](https://github.com/online-ml/river) [[1]](#1) is an open-source online machine learning library written in Python which main focus is **instance-incremental
 learning**, meaning that every component (estimators, transformers, performance metrics, etc.) is designed to be updated one sample at a time. We used River to continuously train and update online learning model from last data streams. 
 > [KAFKA](https://kafka.apache.org/) is 
 a state of the art open-source distributed
@@ -52,10 +52,10 @@ Here we list the high-level steps to set up, deploy, run, and evaluate online le
 
 ## Experiments and Results
 
- We set up **onlinelearning  models** (supervised HoeffdingTree Classifier Trees [[1]](#2) and unsupervised anomaly dtetector HalfSpaces Trees [[2]](#2)) to incrementally learn and update from streams events. The **datasets** used are publiclyavailable on River : [Credit cards transactions in September 2013 by european
+ We set up **online learning  models** (supervised HoeffdingTree Classifier [[2]](#2) and unsupervised anomaly detector model, HalfSpaces Trees [[3]](#3)) to incrementally learn and update from streams events. The **datasets** used are publicly available on River : [Credit cards transactions in September 2013 by european
     cardholders](https://github.com/online-ml/river/blob/master/river/datasets/credit_card.py) and [Electricity prices in New South Wales](https://github.com/online-ml/river/blob/master/river/datasets/elec2.py) The pipeline was hosted on AWS
 Cloud using the Domino Data Science platform connected to a managed Kafka to process streams data.
-The workflow of experiments set up is below and detail are provided in the paper.
+The workflow of experiments set up is below and detaisl are provided in the paper.
 
 <img width="518" alt="pipeline_experiments_kafka_domino" src="https://user-images.githubusercontent.com/27995832/113413618-5c33d400-93bb-11eb-88e9-725aaed545f6.PNG">
 
@@ -78,7 +78,10 @@ Sourty, Robin Vaysse, Adil Zouitine, Heitor Murilo Gomes, Jesse Read, Talel
 Abdessalem, and Albert Bifet. 2020. River: machine learning for streaming data
 in Python. arXiv:2012.04740 [cs.LG]
 
-<a id="1">[2]</a> 
+<a id="2">[2]</a> 
+G. Hulten, L. Spencer, and P. Domingos. Mining time-changing data streams. In KDD’01, pages 97–106, San Francisco, CA, 2001. ACM Press.
+
+<a id="2">[2]</a> 
 Swee Chuan Tan, Kai Ming Ting, and Tony Fei Liu. 2011. Fast Anomaly Detection for Streaming Data. In Proceedings of the Twenty-Second International Joint
 Conference on Artificial Intelligence - Volume Volume Two (Barcelona, Catalonia,
 Spain) (IJCAI’11). AAAI Press, 1511–1516.
