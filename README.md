@@ -1,6 +1,6 @@
 # Online Learning Deployment for Streaming Applications
 
-This repository is the official implementation of the paper Online Learning Deployment for Streaming Applications in the Banking Sector (Barry, Montiel, Bifet, Chiky, Shakman, Manchev, Wadkar, El Baroudi, Tran, KDD 2021). The ressources can be used to set up and deploy instances of online machine learning models, to generate predictions and update the model weights on streaming data.  
+This repository is the official implementation of the paper **Online Learning Deployment for Streaming Applications in the Banking Sector** (Barry, Montiel, Bifet, Chiky, Shakman, Manchev, Wadkar, El Baroudi, Tran, KDD 2021). The ressources can be used to set up and deploy instances of online machine learning models, to generate predictions and update the model weights on streaming data.  
 
 > **Motivations** Our goal is to propose platform to provide a seamless bridge between data science-centric activities and data engineering activities, in a way that satisfies both the imposed production constraints in term of scalability and streaming application requirements in term of online learning. Examples of potential use cases can be anomaly and fraud detection for time-evolving data streams or real-time classification of user activities or IT or logs events. This is can be a real accelerator to gain in pro-activity for real world problems solving.
 
@@ -19,7 +19,7 @@ it spins up containers on demand for running user workloads. The containers are 
 
 ## Repository Files Description
 
-The files in the reposirory are intended to run some data processing steps in the streams learning pipeline we set up to run experiments in the paper.
+The files in the reposirory are the one used to run the differents data processing steps in the streams learning pipeline we set up. It is the source code to reproduce experiments mentioned in the paper, and the major steps are :
 
 * Set up **streams generators using Kafka** producer and consumers to process data as streams, create requires features for model input and output. Files `confluent_producer.py`
  and `KafkaConsumer.py`
@@ -36,7 +36,7 @@ The future work should adress upgrading the solution to include model
 persistence and investigate the trade-off between model serving parallelization to reduce latency and improve throughput vs using distributed
 methods.
 
-## Model Deployment : step to setp up online learning pipeline 
+## Model Deployment : step to set up online learning pipeline 
 
 Here we list the high-level steps to set up, deploy, run, and evaluate online learning experiments: 
 
@@ -46,7 +46,7 @@ Here we list the high-level steps to set up, deploy, run, and evaluate online le
 4. [Optional] Set up or gain access to Domino environment (alternatives can be set up using other solutions).  
 5. Connect your compute/model instances to your Kafka cluster.  An example configuration is shown in https://github.com/dominodatalab/streaming-online-learning/blob/main/src/hostedkafka/KafkaConsumer.py. Model instances will pull from a stream on designated topics and write back results on separate topics.
 6. Set up the Kafka producer stream on the Kafka end.  This is the stream from which the model instances will pull data for inference and learning.  A producer configuration is demonstrated in https://github.com/dominodatalab/streaming-online-learning/blob/main/src/hostedkafka/confluent_producer.py. 
-7. Utilize an appropriate Docker image or virtual environment (or a compute environment if using Domino) with the necessary dependencies, including River-ML and Kafka dependencies.  Install River version 0.1.0 from github as well as confluent-kafka version 1.6.0 via pip.  All required dependencies are included in the provided Docker file: https://quay.io/repository/katieshakman/streaming-online-learning-20200208.
+7. Utilize an appropriate Docker image or virtual environment (or a compute environment if using Domino) with the necessary dependencies, including River-ML and Kafka dependencies.  Install River version 0.1.0 from github as well as confluent-kafka version 1.6.0 via pip.  All required dependencies are included in the **provided Docker file**: https://quay.io/repository/katieshakman/streaming-online-learning-20200208.
 8. Configure models with appropriate settings.  In our benchmarking tests, HoeffdingTreeClassifier model was configured with all defaults except for max_depth: tree.HoeffdingTreeClassifier(max_depth=10) The HalfSpaceTrees model was configured with all defaults except for its seed value: anomaly.HalfSpaceTrees(seed=42)
 9. Collect performance metrics for the deployed models. Predictive performance can be incrementally measured using the ROCAUC metric available in River. Metrics can be sent along with inferences (predictions) to the "inferences" Kafka topic created above. They can also be written to a file which is persisted to a blob store or other convenient storage. When analyzing the results on Domino, confluent_compute_statistics.py (included in the repository) can be run to persist the results to a file and generate summary statistics.
 
