@@ -36,7 +36,7 @@ The future work should adress upgrading the solution to include model
 persistence and investigate the trade-off between model serving parallelization to reduce latency and improve throughput vs using distributed
 methods.
 
-## Model Deployment : step to set up online learning pipeline 
+## Model Deployment : Steps to set up online learning pipeline 
 
 Here we list the high-level steps to set up, deploy, run, and evaluate online learning experiments: 
 
