@@ -81,7 +81,7 @@ in Python. arXiv:2012.04740 [cs.LG]
 <a id="2">[2]</a> 
 G. Hulten, L. Spencer, and P. Domingos. Mining time-changing data streams. In KDD’01, pages 97–106, San Francisco, CA, 2001. ACM Press.
 
-<a id="2">[2]</a> 
+<a id="3">[3]</a> 
 Swee Chuan Tan, Kai Ming Ting, and Tony Fei Liu. 2011. Fast Anomaly Detection for Streaming Data. In Proceedings of the Twenty-Second International Joint
 Conference on Artificial Intelligence - Volume Volume Two (Barcelona, Catalonia,
 Spain) (IJCAI’11). AAAI Press, 1511–1516.
