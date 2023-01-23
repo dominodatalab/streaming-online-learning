@@ -31,13 +31,24 @@ import pickle
 from confluent_kafka.serialization import StringSerializer
 from time import time
 
+topic = 'HalfSpaceTrees'
+sleep_time = 1
+#freq = 8192 #AdaptiveRandomForestClassifier
+#freq = 512 #SRPClassifierNB
+#freq = 128 #SRPClassifierHAT
+freq = 40000
+size=102000
+
 if __name__ == '__main__':
-    p_ptn = int(sys.argv[1])
-    print(p_ptn)
+    topic = sys.argv[1]
+    
+    max_size = int(sys.argv[2])
+    no_of_records_per_second = int(sys.argv[3])
+    
     user= os.environ['kafka_username']
     password= os.environ['kafka_password']
     bsts= os.environ['kafka_bootstrap_servers']
-    topic = 'f2'
+    
     conf = {'bootstrap.servers': bsts,
             'sasl.mechanism': 'PLAIN',
             'security.protocol': 'SASL_SSL',
@@ -50,30 +61,30 @@ if __name__ == '__main__':
 
     producer = Producer(conf)    
     dataset = datasets.MaliciousURL()
-    k = 0
-    size=100000
     
-    data = dataset.take(size)
-    for x,y in data:        
-        if(k%1000==0):
-            print(f"now processing {k}")
-        k = k + 1
-        data = {}
-        data['f']=x
-        data['y']=y
-        data['st']=time()
-        v= json.dumps(data).encode('utf-8')
-        if k%4==p_ptn:            
-            producer.produce(topic, value=v, key=str(k))
-
-
-        if k%400==0:           
-            if k%4000==0:
-                print(f'flushing {k}')
-            producer.flush()
-
-
+    data = datasets.CreditCard()
+    cnt = 0 
+    i = 0
+    print(max_size)
+    while (cnt<max_size):
+        for x,y in data:            
+            cnt = cnt + 1
+            if(cnt>max_size):
+                break
+            
+            i=i+1
+            data = {}
+                
+            data['f']=x
+            data['y']=y
+            data['st']=time()
+            cnt = cnt + 1
+            v= json.dumps(data).encode('utf-8')
+            producer.produce(topic, value=v, key=str(i))
+            if cnt%1000==0:           
+                print(f'flushing {cnt}')
+                producer.flush()            
+          
+            
     producer.flush()
-    producer.close()
     print('done')
-# See PyCharm help at https://www.jetbrains.com/help/pycharm/

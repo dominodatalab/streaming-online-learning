@@ -31,13 +31,24 @@ import pickle
 from confluent_kafka.serialization import StringSerializer
 from time import time
 
+topic = 'HoeffdingAdaptiveTreeClassifier'
+sleep_time = 1
+#freq = 8192 #AdaptiveRandomForestClassifier
+#freq = 512 #SRPClassifierNB
+#freq = 128 #SRPClassifierHAT
+freq = 768
+size=120000
+
 if __name__ == '__main__':
-    p_ptn = int(sys.argv[1])
-    print(p_ptn)
+    topic = sys.argv[1]
+    p_ptn = int(sys.argv[2])
+    max_size = int(sys.argv[3])
+    no_of_records_per_second = int(sys.argv[4])
+    
     user= os.environ['kafka_username']
     password= os.environ['kafka_password']
     bsts= os.environ['kafka_bootstrap_servers']
-    topic = 'f2'
+    
     conf = {'bootstrap.servers': bsts,
             'sasl.mechanism': 'PLAIN',
             'security.protocol': 'SASL_SSL',
@@ -50,29 +61,36 @@ if __name__ == '__main__':
 
     producer = Producer(conf)    
     dataset = datasets.MaliciousURL()
-    k = 0
-    size=100000
     
-    data = dataset.take(size)
-    for x,y in data:        
-        if(k%1000==0):
-            print(f"now processing {k}")
-        k = k + 1
-        data = {}
-        data['f']=x
-        data['y']=y
-        v= json.dumps(data).encode('utf-8')
-        if k%4==p_ptn:            
-            producer.produce(topic, value=v, key=str(k))
+    data = dataset.take(max_size)
+    
+    
+    cnt = 0 
+    i = 0
+    while (cnt<max_size):
+        for f, y in data:
+            
+            cnt = cnt + 1
+            if(cnt>max_size):
+                break
+            if cnt%4==p_ptn:            
+                i=i+1
+                data = {}
+                data['f']=x
+                data['y']=y
+                data['st']=time()
+                print(y)
+                cnt = cnt + 1
+                v= json.dumps(data).encode('utf-8')
+                producer.produce(topic, value=v, key=str(i))
+            if cnt%400==0:           
+                print(f'flushing now {cnt}')
+                producer.flush()            
+            if cnt%no_of_records_per_second==0 and sleep_time>0:
+                sleep(sleep_time)
 
 
-        if k%400==0:           
-            if k%4000==0:
-                print(f'flushing {k}')
-            producer.flush()
-
-
+            
+            
     producer.flush()
-    producer.close()
     print('done')
-# See PyCharm help at https://www.jetbrains.com/help/pycharm/
