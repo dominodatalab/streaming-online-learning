@@ -71,20 +71,20 @@ if __name__ == '__main__':
             cnt = cnt + 1
             if(cnt>max_size):
                 break
+          
             
-            i=i+1
             data = {}
                 
             data['f']=x
             data['y']=y
-            data['st']=time()
-            cnt = cnt + 1
+            data['st']=time()            
             v= json.dumps(data).encode('utf-8')
-            producer.produce(topic, value=v, key=str(i))
+            producer.produce(topic, value=v, key=str(cnt))
             if cnt%1000==0:           
                 print(f'flushing {cnt}')
                 producer.flush()            
           
             
     producer.flush()
+    producer.close()
     print('done')

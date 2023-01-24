@@ -36,14 +36,14 @@ sleep_time = 1
 #freq = 8192 #AdaptiveRandomForestClassifier
 #freq = 512 #SRPClassifierNB
 #freq = 128 #SRPClassifierHAT
-freq = 768
+#freq = 768
 size=120000
 
 if __name__ == '__main__':
     topic = sys.argv[1]
-    p_ptn = int(sys.argv[2])
-    max_size = int(sys.argv[3])
-    no_of_records_per_second = int(sys.argv[4])
+    #p_ptn = int(sys.argv[2])
+    max_size = int(sys.argv[2])
+    no_of_records_per_second = int(sys.argv[3])
     
     user= os.environ['kafka_username']
     password= os.environ['kafka_password']
@@ -62,35 +62,32 @@ if __name__ == '__main__':
     producer = Producer(conf)    
     dataset = datasets.MaliciousURL()
     
+    
+    
     data = dataset.take(max_size)
-    
-    
     cnt = 0 
     i = 0
-    while (cnt<max_size):
-        for f, y in data:
-            
+    
+    
+    for f, y in data:
+
             cnt = cnt + 1
-            if(cnt>max_size):
-                break
-            if cnt%4==p_ptn:            
-                i=i+1
-                data = {}
-                data['f']=x
-                data['y']=y
-                data['st']=time()
-                print(y)
-                cnt = cnt + 1
-                v= json.dumps(data).encode('utf-8')
-                producer.produce(topic, value=v, key=str(i))
-            if cnt%400==0:           
+            data = {}
+            data['f']=f
+            data['y']=str(y).lower()
+            data['st']=time()  
+            
+            v= json.dumps(data).encode('utf-8')
+            producer.produce(topic, value=v, key=str(cnt))
+            if cnt%128==0:           
                 print(f'flushing now {cnt}')
                 producer.flush()            
-            if cnt%no_of_records_per_second==0 and sleep_time>0:
-                sleep(sleep_time)
-
-
+            if cnt%128==0:
+                sleep(1)
+            if(cnt>max_size):
+                break
             
             
     producer.flush()
-    print('done')
+    
+    
